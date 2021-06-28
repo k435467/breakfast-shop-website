@@ -1,5 +1,6 @@
 import { GetStaticProps } from "next";
 import { PrismaClient, MyModel } from "@prisma/client";
+import prisma from "../lib/pirsma";
 import Layout from "../component/layout";
 
 export default function Home({ data }: { data: MyModel[] }) {
@@ -9,8 +10,6 @@ export default function Home({ data }: { data: MyModel[] }) {
     </Layout>
   );
 }
-
-const prisma = new PrismaClient();
 
 export const getStaticProps: GetStaticProps = async () => {
   const mymodeldata = await prisma.myModel.findMany();
