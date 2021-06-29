@@ -14,3 +14,19 @@ model MyModel {
   id   Int    @id @default(autoincrement())
   text String
 }
+
+model MenuCategory {
+  id         Int        @id @default(autoincrement())
+  name       String
+  items      MenuItem[]
+  googleIcon String     @default("fastfood")
+}
+
+model MenuItem {
+  id          Int          @id @default(autoincrement())
+  name        String
+  pirce       Int
+  secondPrice Int?
+  category    MenuCategory @relation(fields: [CategoryId], references: [id])
+  CategoryId  Int
+}
