@@ -1,12 +1,31 @@
 import { GetStaticProps } from "next";
-import { PrismaClient, MyModel } from "@prisma/client";
+import { MyModel } from "@prisma/client";
 import prisma from "../lib/pirsma";
 import Layout from "../component/layout";
+import { AppBar, Toolbar, Typography, Container } from "@material-ui/core";
+// import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+
+// const useStyles = makeStyles((theme: Theme) =>
+//   createStyles({
+//     title: {
+//       flexGrow: 1,
+//     },
+//   })
+// );
 
 export default function Home({ data }: { data: MyModel[] }) {
   return (
     <Layout>
-      <p>{JSON.stringify(data)}</p>
+      <>
+        <AppBar position="static">
+          <Toolbar>
+            <Typography variant="h6">Breakfast</Typography>
+          </Toolbar>
+        </AppBar>
+        <Container>
+          <p>{JSON.stringify(data)}</p>
+        </Container>
+      </>
     </Layout>
   );
 }

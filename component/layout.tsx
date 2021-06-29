@@ -1,13 +1,18 @@
-import React from "react";
+import React, { ReactChild } from "react";
 import Head from "next/head";
+import { Container } from "@material-ui/core";
 
 export const siteTitle = "Breakfast Shop";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function Layout({ children }: { children: ReactChild }) {
   return (
     <>
       <Head>
         <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+        />
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
