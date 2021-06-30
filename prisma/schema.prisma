@@ -10,11 +10,6 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model MyModel {
-  id   Int    @id @default(autoincrement())
-  text String
-}
-
 model MenuCategory {
   id         Int        @id @default(autoincrement())
   name       String

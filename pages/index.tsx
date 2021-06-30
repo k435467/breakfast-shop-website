@@ -1,8 +1,16 @@
 import { GetStaticProps } from "next";
-import { MyModel, MenuCategory } from "@prisma/client";
+import { MenuCategory } from "@prisma/client";
 import prisma from "../lib/pirsma";
 import Layout from "../component/layout";
-import { AppBar, Toolbar, Typography, Container, Divider } from "@material-ui/core";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Container,
+  Divider,
+  Button,
+  Box,
+} from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { Parallax } from "react-parallax";
 import Icon from "@material-ui/core/Icon";
@@ -20,16 +28,13 @@ const useStyles = makeStyles((theme: Theme) =>
     footer: {
       lineHeight: "5",
     },
+    boxBtn: {
+      flexDirection: "column",
+    },
   })
 );
 
-export default function Home({
-  data,
-  menuData,
-}: {
-  data: MyModel[];
-  menuData: MenuCategory[];
-}) {
+export default function Home({ menuCategories }: { menuCategories: MenuCategory[] }) {
   const classes = useStyles();
   return (
     <Layout>
@@ -53,26 +58,43 @@ export default function Home({
             </div>
           </Parallax>
           <div style={{ height: "100vh" }}></div>
-          <Icon>lunch_dining</Icon>
-          <p>{JSON.stringify(data)}</p>
-          <p>{JSON.stringify(menuData)}</p>
-          <Divider />
-          <Typography align="center" className={classes.footer}>
-            Developed by k435467
-          </Typography>
+          <Box display="flex" justifyContent="center" flexWrap="wrap">
+            {menuCategories.map((category) => {
+              return (
+                <div key={category.id} style={{ padding: "1rem" }}>
+                  <Button
+                    variant="outlined"
+                    color="primary"
+                    classes={{ label: classes.boxBtn }}
+                  >
+                    <Icon fontSize="large">{category.googleIcon}</Icon>
+                    {category.name}
+                  </Button>
+                </div>
+              );
+            })}
+          </Box>
+          <p>{JSON.stringify(menuCategories)}</p>
+          {console.log(menuCategories)}
         </Container>
+        <Divider />
+        <Typography align="center" className={classes.footer}>
+          Developed by k435467
+        </Typography>
       </>
     </Layout>
   );
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const mymodeldata = await prisma.myModel.findMany();
-  const menuCategories = await prisma.menuCategory.findMany();
+  const menuCategories = await prisma.menuCategory.findMany({
+    include: {
+      items: true,
+    },
+  });
   return {
     props: {
-      data: mymodeldata,
-      menuData: menuCategories,
+      menuCategories: menuCategories,
     },
   };
 };
