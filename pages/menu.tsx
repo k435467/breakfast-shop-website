@@ -1,4 +1,5 @@
 import { GetStaticProps } from "next";
+import Link from "next/link";
 import { MenuCategory, MenuItem } from "@prisma/client";
 import prisma from "../lib/pirsma";
 import Layout from "../component/layout";
@@ -14,9 +15,17 @@ import {
   List,
   ListItem,
   ListItemText,
+  ListItemSecondaryAction,
+  Fab,
+  Box,
 } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import {
+  ExpandMore as ExpandMoreIcon,
+  ArrowBack as ArrowBackIcon,
+} from "@material-ui/icons";
+import TargetCategoryContext from "../lib/targetCategoryContext";
+import React, { useContext, useState } from "react";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -32,18 +41,43 @@ export default function Menu({
   menu: (MenuCategory & { items: MenuItem[] })[];
 }) {
   const classes = useStyles();
+  const { targetCategory, setTargetCategory } = useContext(TargetCategoryContext);
+  const [expanded, setExpanded] = useState<number | false>(targetCategory);
+  const handleChange =
+    (id: number) => (event: React.ChangeEvent<{}>, isExpanded: boolean) => {
+      setExpanded(isExpanded ? id : false);
+    };
   return (
     <Layout>
       <>
         <AppBar position="static">
           <Toolbar>
-            <Typography variant="h6">Breakfast</Typography>
+            <Typography variant="h6">Breakfast / Menu</Typography>
           </Toolbar>
         </AppBar>
-        <Container>
+        <Container style={{ paddingTop: "1rem", paddingBottom: "2rem" }}>
+          <Box
+            display="flex"
+            flexWrap="wrap"
+            alignItems="center"
+            style={{ marginBottom: "1rem" }}
+          >
+            <Link href="/" passHref>
+              <Fab color="primary" size="small" style={{ marginRight: "1rem" }}>
+                <ArrowBackIcon />
+              </Fab>
+            </Link>
+            <Link href="/">
+              <a>Back to Home</a>
+            </Link>
+          </Box>
           {menu.map((category) => {
             return (
-              <Accordion key={category.id}>
+              <Accordion
+                key={category.id}
+                expanded={expanded === category.id}
+                onChange={handleChange(category.id)}
+              >
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls={`panel${category.id}a-content`}
@@ -57,6 +91,9 @@ export default function Menu({
                       return (
                         <ListItem key={item.id}>
                           <ListItemText primary={item.name}></ListItemText>
+                          <ListItemSecondaryAction>
+                            <Typography>{item.pirce}</Typography>
+                          </ListItemSecondaryAction>
                         </ListItem>
                       );
                     })}

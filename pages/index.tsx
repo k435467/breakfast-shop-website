@@ -1,4 +1,5 @@
 import { GetStaticProps } from "next";
+import Link from "next/link";
 import { MenuCategory } from "@prisma/client";
 import prisma from "../lib/pirsma";
 import Layout from "../component/layout";
@@ -10,10 +11,12 @@ import {
   Divider,
   Button,
   Box,
+  Icon,
 } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { Parallax } from "react-parallax";
-import Icon from "@material-ui/core/Icon";
+import TargetCategoryContext from "../lib/targetCategoryContext";
+import { useContext } from "react";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -36,6 +39,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function Home({ menuCategories }: { menuCategories: MenuCategory[] }) {
   const classes = useStyles();
+  const { targetCategory, setTargetCategory } = useContext(TargetCategoryContext);
   return (
     <Layout>
       <>
@@ -57,25 +61,33 @@ export default function Home({ menuCategories }: { menuCategories: MenuCategory[
               </Typography>
             </div>
           </Parallax>
-          <div style={{ height: "100vh" }}></div>
+          <h1>
+            <Link href="/menu">
+              <a>see menu</a>
+            </Link>
+          </h1>
           <Box display="flex" justifyContent="center" flexWrap="wrap">
             {menuCategories.map((category) => {
               return (
                 <div key={category.id} style={{ padding: "1rem" }}>
-                  <Button
-                    variant="outlined"
-                    color="primary"
-                    classes={{ label: classes.boxBtn }}
-                  >
-                    <Icon fontSize="large">{category.googleIcon}</Icon>
-                    {category.name}
-                  </Button>
+                  <Link href="/menu" passHref>
+                    <Button
+                      variant="outlined"
+                      color="primary"
+                      classes={{ label: classes.boxBtn }}
+                      onClick={() => {
+                        setTargetCategory(category.id);
+                      }}
+                    >
+                      <Icon fontSize="large">{category.googleIcon}</Icon>
+                      {category.name}
+                    </Button>
+                  </Link>
                 </div>
               );
             })}
           </Box>
-          <p>{JSON.stringify(menuCategories)}</p>
-          {console.log(menuCategories)}
+          <div style={{ height: "100vh" }}></div>
         </Container>
         <Divider />
         <Typography align="center" className={classes.footer}>
@@ -87,11 +99,7 @@ export default function Home({ menuCategories }: { menuCategories: MenuCategory[
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const menuCategories = await prisma.menuCategory.findMany({
-    include: {
-      items: true,
-    },
-  });
+  const menuCategories = await prisma.menuCategory.findMany();
   return {
     props: {
       menuCategories: menuCategories,
