@@ -8,7 +8,6 @@ import {
   Toolbar,
   Typography,
   Container,
-  Divider,
   Accordion,
   AccordionSummary,
   AccordionDetails,
@@ -31,6 +30,8 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     footer: {
       lineHeight: "5",
+      color: "white",
+      backgroundColor: theme.palette.primary.main,
     },
   })
 );
@@ -103,7 +104,6 @@ export default function Menu({
             );
           })}
         </Container>
-        <Divider />
         <Typography align="center" className={classes.footer}>
           Developed by k435467
         </Typography>
