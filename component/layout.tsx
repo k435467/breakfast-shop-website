@@ -10,7 +10,7 @@ export default function Layout({ children }: { children: ReactChild }) {
         <link rel="icon" href="/favicon.ico" />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+          href="https://fonts.googleapis.com/css?family=Roboto|Raleway&display=swap"
         />
         <link
           rel="stylesheet"

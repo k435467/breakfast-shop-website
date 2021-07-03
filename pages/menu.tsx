@@ -53,7 +53,7 @@ export default function Menu({
       <>
         <AppBar position="static">
           <Toolbar>
-            <Typography variant="h6">Breakfast / Menu</Typography>
+            <Typography variant="h6">BREAKFAST / MENU</Typography>
           </Toolbar>
         </AppBar>
         <Container style={{ paddingTop: "1rem", paddingBottom: "2rem" }}>
@@ -69,7 +69,9 @@ export default function Menu({
               </Fab>
             </Link>
             <Link href="/">
-              <a>Back to Home</a>
+              <a>
+                <Typography variant="h6">HOME</Typography>
+              </a>
             </Link>
           </Box>
           {menu.map((category) => {
