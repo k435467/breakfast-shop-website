@@ -9,6 +9,9 @@ const theme = createMuiTheme({
   palette: {
     primary: orange,
   },
+  typography: {
+    fontFamily: '"Raleway", "Roboto", "Helvetica", "Arial", sans-serif',
+  },
 });
 
 export default function App({ Component, pageProps }: AppProps) {
