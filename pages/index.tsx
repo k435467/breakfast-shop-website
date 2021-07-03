@@ -2,23 +2,15 @@ import { GetStaticProps } from "next";
 import Link from "next/link";
 import { MenuCategory } from "@prisma/client";
 import prisma from "../lib/pirsma";
-import Layout from "../component/layout";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Container,
-  Button,
-  Box,
-  Icon,
-  Paper,
-} from "@material-ui/core";
+import { Typography, Container, Button, Box, Icon, Paper } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { Parallax } from "react-parallax";
 import TargetCategoryContext from "../lib/targetCategoryContext";
 import { useContext } from "react";
-import Chevron from "../component/chevron";
-import utilStyles from "../styles/utils.module.scss";
+
+import Layout from "../component/layout";
+import Footer from "../component/footer";
+import AppBar from "../component/appBar";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -36,10 +28,6 @@ const useStyles = makeStyles((theme: Theme) =>
       borderRadius: 0,
       transform: "translate(0, -50px)",
     },
-    root: {
-      magicNumber: 0.09719,
-      skewPadding: "calc(var(--width) * var(--magic-number))",
-    },
     diagonalContainer: {
       position: "relative",
       transform: "translate(0, -100px)",
@@ -50,23 +38,13 @@ const useStyles = makeStyles((theme: Theme) =>
         right: 0,
         left: 0,
         bottom: 0,
-        backgroundImage: `linear-gradient(45deg, ${theme.palette.primary.dark}, #eaafc8)`,
-        transform: "skewY(-11deg)",
-      },
-      "&:after": {
-        content: '""',
-        position: "absolute",
-        top: "1.5rem",
-        right: "1rem",
-        left: "1rem",
-        bottom: "1.5rem",
-        backgroundImage: `linear-gradient(45deg, ${theme.palette.primary.main}, #eaafc8)`,
+        backgroundImage: `linear-gradient(45deg, ${theme.palette.primary.dark}, ${theme.palette.primary.light})`,
         transform: "skewY(-11deg)",
       },
     },
     diagonalContent: {
       margin: "0 auto",
-      height: "500px",
+      height: "300px",
       position: "relative",
       zIndex: 3,
     },
@@ -80,6 +58,10 @@ const useStyles = makeStyles((theme: Theme) =>
       width: "4rem",
       height: "5rem",
     },
+    menuLink: {
+      textAlign: "center",
+      textDecoration: "none",
+    },
   })
 );
 
@@ -89,11 +71,7 @@ export default function Home({ menuCategories }: { menuCategories: MenuCategory[
   return (
     <Layout>
       <>
-        <AppBar position="static">
-          <Toolbar>
-            <Typography variant="h6">BREAKFAST</Typography>
-          </Toolbar>
-        </AppBar>
+        <AppBar title="BREAKFAST" />
         <div style={{ paddingTop: "0.4rem" }}>
           <Parallax
             // blur={{ min: -1, max: 3 }}
@@ -103,28 +81,30 @@ export default function Home({ menuCategories }: { menuCategories: MenuCategory[
           >
             <div className={classes.parallaxContentContainer}>
               <Paper elevation={24} className={classes.parallaxContent}>
-                <Typography variant="h5" style={{ fontWeight: "bold" }}>
+                <Typography variant="h4" style={{ fontWeight: "bold" }}>
                   BREAKFAST
                 </Typography>
               </Paper>
             </div>
           </Parallax>
         </div>
-        <div
-          className={`${classes.diagonalContainer} ${utilStyles.diagonalContainerPadding}`}
-        >
-          <div className={classes.diagonalContent}>12312</div>
+        <div className={classes.diagonalContainer}>
+          <div className={classes.diagonalContent}></div>
         </div>
         <Container>
-          <Link href="/menu">
-            <a
-              onClick={() => {
-                setTargetCategory(0);
-              }}
-            >
-              <Typography variant="h5">VIEW MENU</Typography>
-            </a>
-          </Link>
+          <Box display="flex" justifyContent="center">
+            <Link href="/menu" passHref>
+              <Button
+                color="primary"
+                onClick={() => {
+                  setTargetCategory(0);
+                }}
+                style={{ fontSize: "2rem" }}
+              >
+                VIEW MENU
+              </Button>
+            </Link>
+          </Box>
           <Box display="flex" justifyContent="center" flexWrap="wrap">
             {menuCategories.map((category) => {
               return (
@@ -146,11 +126,9 @@ export default function Home({ menuCategories }: { menuCategories: MenuCategory[
               );
             })}
           </Box>
-          <div style={{ height: "100vh" }}></div>
         </Container>
-        <Typography align="center" className={classes.footer}>
-          Developed by k435467
-        </Typography>
+        <div style={{ height: "100vh" }}></div>
+        <Footer />
       </>
     </Layout>
   );
