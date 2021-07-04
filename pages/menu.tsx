@@ -24,7 +24,7 @@ import {
 import TargetCategoryContext from "../lib/targetCategoryContext";
 import React, { useContext, useState } from "react";
 
-import Layout from "../component/layout";
+import CustomHead from "../component/customHead";
 import Footer from "../component/footer";
 import AppBar from "../component/appBar";
 
@@ -51,64 +51,63 @@ export default function Menu({
       setExpanded(isExpanded ? id : false);
     };
   return (
-    <Layout>
-      <>
-        <AppBar title="BREAKFAST / MENU" />
-        <Container style={{ paddingTop: "1rem", paddingBottom: "2rem" }}>
-          <Box
-            display="flex"
-            flexWrap="wrap"
-            alignItems="center"
-            style={{ marginBottom: "1rem" }}
-          >
-            <Link href="/" passHref>
-              <Fab color="primary" size="small">
-                <ArrowBackIcon />
-              </Fab>
-            </Link>
-            <Link href="/" passHref>
-              <Button color="primary" size="large">
-                HOME
-              </Button>
-            </Link>
-          </Box>
-          <div style={{ minHeight: "80vh" }}>
-            {menu.map((category) => {
-              return (
-                <Accordion
-                  key={category.id}
-                  expanded={expanded === category.id}
-                  onChange={handleChange(category.id)}
+    <>
+      <CustomHead />
+      <AppBar title="BREAKFAST / MENU" />
+      <Container style={{ paddingTop: "1rem", paddingBottom: "2rem" }}>
+        <Box
+          display="flex"
+          flexWrap="wrap"
+          alignItems="center"
+          style={{ marginBottom: "1rem" }}
+        >
+          <Link href="/" passHref>
+            <Fab color="primary" size="small">
+              <ArrowBackIcon />
+            </Fab>
+          </Link>
+          <Link href="/" passHref>
+            <Button color="primary" size="large">
+              HOME
+            </Button>
+          </Link>
+        </Box>
+        <div style={{ minHeight: "80vh" }}>
+          {menu.map((category) => {
+            return (
+              <Accordion
+                key={category.id}
+                expanded={expanded === category.id}
+                onChange={handleChange(category.id)}
+              >
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls={`panel${category.id}a-content`}
+                  id={`panel${category.id}a-header`}
                 >
-                  <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls={`panel${category.id}a-content`}
-                    id={`panel${category.id}a-header`}
-                  >
-                    <Typography variant="h6">{category.name}</Typography>
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    <List>
-                      {category.items.map((item) => {
-                        return (
-                          <ListItem key={item.id}>
-                            <ListItemText primary={item.name}></ListItemText>
-                            <ListItemSecondaryAction>
-                              <Typography>{item.pirce}</Typography>
-                            </ListItemSecondaryAction>
-                          </ListItem>
-                        );
-                      })}
-                    </List>
-                  </AccordionDetails>
-                </Accordion>
-              );
-            })}
-          </div>
-        </Container>
-        <Footer />
-      </>
-    </Layout>
+                  <Typography variant="h6">{category.name}</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <List>
+                    {category.items.map((item) => {
+                      return (
+                        <ListItem key={item.id}>
+                          <ListItemText primary={item.name}></ListItemText>
+                          <ListItemSecondaryAction>
+                            <Typography>{item.pirce}</Typography>
+                          </ListItemSecondaryAction>
+                        </ListItem>
+                      );
+                    })}
+                  </List>
+                </AccordionDetails>
+              </Accordion>
+            );
+          })}
+        </div>
+      </Container>
+      <Footer />
+    </>
   );
 }
 

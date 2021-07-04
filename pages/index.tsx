@@ -8,7 +8,7 @@ import { Parallax } from "react-parallax";
 import TargetCategoryContext from "../lib/targetCategoryContext";
 import { useContext } from "react";
 
-import Layout from "../component/layout";
+import CustomHead from "../component/customHead";
 import Footer from "../component/footer";
 import AppBar from "../component/appBar";
 
@@ -70,79 +70,78 @@ export default function Home({ menuCategories }: { menuCategories: MenuCategory[
   const classes = useStyles();
   const { targetCategory, setTargetCategory } = useContext(TargetCategoryContext);
   return (
-    <Layout>
-      <>
-        <AppBar title="BREAKFAST" />
-        <div style={{ paddingTop: "0.4rem" }}>
-          <Parallax
-            // blur={{ min: -1, max: 3 }}
-            bgImage="/images/food-icons.jpg"
-            bgImageAlt="food icons"
-            strength={500}
-          >
-            <div className={classes.parallaxContentContainer}>
-              <Paper elevation={24} className={classes.parallaxContent}>
-                <Typography variant="h4" style={{ fontWeight: "bold" }}>
-                  BREAKFAST
-                </Typography>
-              </Paper>
-            </div>
-          </Parallax>
-        </div>
-        <div className={classes.diagonalContainer}>
-          <div className={classes.diagonalContent}></div>
-        </div>
-        <Container>
-          <Box display="flex" justifyContent="center">
-            <Link href="/menu" passHref>
-              <Button
-                color="primary"
-                onClick={() => {
-                  setTargetCategory(0);
-                }}
-                style={{ fontSize: "2rem" }}
-              >
-                <Typography variant="h4">VIEW MENU</Typography>
-              </Button>
-            </Link>
-          </Box>
-          <Box display="flex" justifyContent="center" flexWrap="wrap">
-            {menuCategories.map((category) => {
-              return (
-                <div key={category.id} style={{ padding: "1rem" }}>
-                  <Link href="/menu" passHref>
-                    <Button
-                      variant="outlined"
-                      color="primary"
-                      classes={{ label: classes.boxBtn }}
-                      onClick={() => {
-                        setTargetCategory(category.id);
-                      }}
-                    >
-                      <Icon fontSize="large">{category.googleIcon}</Icon>
-                      {category.name}
-                    </Button>
-                  </Link>
-                </div>
-              );
-            })}
-          </Box>
-          {/* enrichment here */}
-          <div>
-            <Typography variant="h4" color="primary" align="center">
-              FEATURED
-            </Typography>
-            <Typography align="center" style={{ margin: "0 10vw" }}>
-              Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris
-              cursus commodo interdum.
-            </Typography>
-            <Card raised style={{ height: "300px", width: "300px" }}></Card>
+    <>
+      <CustomHead />
+      <AppBar title="BREAKFAST" />
+      <div style={{ paddingTop: "0.4rem" }}>
+        <Parallax
+          // blur={{ min: -1, max: 3 }}
+          bgImage="/images/food-icons.jpg"
+          bgImageAlt="food icons"
+          strength={500}
+        >
+          <div className={classes.parallaxContentContainer}>
+            <Paper elevation={24} className={classes.parallaxContent}>
+              <Typography variant="h4" style={{ fontWeight: "bold" }}>
+                BREAKFAST
+              </Typography>
+            </Paper>
           </div>
-        </Container>
-        <div style={{ height: "100vh" }}></div>
-        <Footer />
-      </>
-    </Layout>
+        </Parallax>
+      </div>
+      <div className={classes.diagonalContainer}>
+        <div className={classes.diagonalContent}></div>
+      </div>
+      <Container>
+        <Box display="flex" justifyContent="center">
+          <Link href="/menu" passHref>
+            <Button
+              color="primary"
+              onClick={() => {
+                setTargetCategory(0);
+              }}
+              style={{ fontSize: "2rem" }}
+            >
+              <Typography variant="h4">VIEW MENU</Typography>
+            </Button>
+          </Link>
+        </Box>
+        <Box display="flex" justifyContent="center" flexWrap="wrap">
+          {menuCategories.map((category) => {
+            return (
+              <div key={category.id} style={{ padding: "1rem" }}>
+                <Link href="/menu" passHref>
+                  <Button
+                    variant="outlined"
+                    color="primary"
+                    classes={{ label: classes.boxBtn }}
+                    onClick={() => {
+                      setTargetCategory(category.id);
+                    }}
+                  >
+                    <Icon fontSize="large">{category.googleIcon}</Icon>
+                    {category.name}
+                  </Button>
+                </Link>
+              </div>
+            );
+          })}
+        </Box>
+        {/* enrichment here */}
+        <div>
+          <Typography variant="h4" color="primary" align="center">
+            FEATURED
+          </Typography>
+          <Typography align="center" style={{ margin: "0 10vw" }}>
+            Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris
+            cursus commodo interdum.
+          </Typography>
+          <Card raised style={{ height: "300px", width: "300px" }}></Card>
+        </div>
+      </Container>
+      <div style={{ height: "100vh" }}></div>
+      <Footer />
+    </>
   );
 }
 
