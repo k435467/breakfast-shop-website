@@ -2,7 +2,7 @@ import { GetStaticProps } from "next";
 import Link from "next/link";
 import { MenuCategory } from "@prisma/client";
 import prisma from "../lib/pirsma";
-import { Typography, Container, Button, Box, Icon, Paper, Card } from "@material-ui/core";
+import { Typography, Container, Button, Box, Icon, Paper } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { Parallax } from "react-parallax";
 import TargetCategoryContext from "../lib/targetCategoryContext";
@@ -11,6 +11,7 @@ import { useContext } from "react";
 import CustomHead from "../component/customHead";
 import Footer from "../component/footer";
 import AppBar from "../component/appBar";
+import CustomCarousel from "../component/customCarousel";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -128,16 +129,16 @@ export default function Home({ menuCategories }: { menuCategories: MenuCategory[
           })}
         </Box>
         {/* enrichment here */}
-        <div>
-          <Typography variant="h4" color="primary" align="center">
-            FEATURED
-          </Typography>
-          <Typography align="center" style={{ margin: "0 10vw" }}>
-            Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris
-            cursus commodo interdum.
-          </Typography>
-          <Card raised style={{ height: "300px", width: "300px" }}></Card>
-        </div>
+        <Typography variant="h4" color="primary" align="center">
+          FEATURED
+        </Typography>
+        <Typography align="center" style={{ margin: "0 10vw" }}>
+          Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris
+          cursus commodo interdum.
+        </Typography>
+        <Box display="flex" justifyContent="center">
+          <CustomCarousel />
+        </Box>
       </Container>
       <div style={{ height: "100vh" }}></div>
       <Footer />
