@@ -1,8 +1,9 @@
 import { GetStaticProps } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { MenuCategory } from "@prisma/client";
 import prisma from "../lib/pirsma";
-import { Typography, Container, Button, Box, Icon, Paper } from "@material-ui/core";
+import { Typography, Container, Button, Box, Icon, Paper, Grid } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { Parallax } from "react-parallax";
 import TargetCategoryContext from "../lib/targetCategoryContext";
@@ -139,6 +140,32 @@ export default function Home({ menuCategories }: { menuCategories: MenuCategory[
         <Box display="flex" justifyContent="center">
           <CustomCarousel />
         </Box>
+        <Grid container spacing={3}>
+          <Grid item xs={6}>
+            <Paper>
+              <Typography variant="h5">I am Just for Enrichment</Typography>
+              <Typography>
+                Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris
+                cursus commodo interdum. Praesent ut risus eget metus luctus accumsan id
+                ultrices nunc. Sed at orci sed massa consectetur dignissim a sit amet dui.
+                Duis commodo vitae velit et faucibus. Morbi vehicula lacinia malesuada.
+                Nulla placerat augue vel ipsum ultrices, cursus iaculis dui sollicitudin.
+                Vestibulum eu ipsum vel diam elementum tempor vel ut orci. Orci varius
+                natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+              </Typography>
+            </Paper>
+          </Grid>
+          <Grid item xs={6}>
+            {/* <Paper> */}
+            <Image
+              src="/images/food-icons.jpg"
+              height={300}
+              width={300}
+              alt="food-icons img"
+            />
+            {/* </Paper> */}
+          </Grid>
+        </Grid>
       </Container>
       <div style={{ height: "100vh" }}></div>
       <Footer />
