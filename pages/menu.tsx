@@ -14,6 +14,7 @@ import {
   ListItemSecondaryAction,
   Fab,
   Box,
+  Button,
 } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import {
@@ -61,14 +62,14 @@ export default function Menu({
             style={{ marginBottom: "1rem" }}
           >
             <Link href="/" passHref>
-              <Fab color="primary" size="small" style={{ marginRight: "1rem" }}>
+              <Fab color="primary" size="small">
                 <ArrowBackIcon />
               </Fab>
             </Link>
-            <Link href="/">
-              <a>
-                <Typography variant="h6">HOME</Typography>
-              </a>
+            <Link href="/" passHref>
+              <Button color="primary" size="large">
+                HOME
+              </Button>
             </Link>
           </Box>
           <div style={{ minHeight: "80vh" }}>

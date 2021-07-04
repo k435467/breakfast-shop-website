@@ -2,7 +2,7 @@ import { GetStaticProps } from "next";
 import Link from "next/link";
 import { MenuCategory } from "@prisma/client";
 import prisma from "../lib/pirsma";
-import { Typography, Container, Button, Box, Icon, Paper } from "@material-ui/core";
+import { Typography, Container, Button, Box, Icon, Paper, Card } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { Parallax } from "react-parallax";
 import TargetCategoryContext from "../lib/targetCategoryContext";
@@ -39,12 +39,13 @@ const useStyles = makeStyles((theme: Theme) =>
         left: 0,
         bottom: 0,
         backgroundImage: `linear-gradient(45deg, ${theme.palette.primary.dark}, ${theme.palette.primary.light})`,
-        transform: "skewY(-11deg)",
+        transform: "skewY(-7deg)",
       },
     },
     diagonalContent: {
       margin: "0 auto",
-      height: "300px",
+      // height: "300px",
+      height: "calc(100vw * 0.09719 + 80px)",
       position: "relative",
       zIndex: 3,
     },
@@ -101,7 +102,7 @@ export default function Home({ menuCategories }: { menuCategories: MenuCategory[
                 }}
                 style={{ fontSize: "2rem" }}
               >
-                VIEW MENU
+                <Typography variant="h4">VIEW MENU</Typography>
               </Button>
             </Link>
           </Box>
@@ -126,6 +127,17 @@ export default function Home({ menuCategories }: { menuCategories: MenuCategory[
               );
             })}
           </Box>
+          {/* enrichment here */}
+          <div>
+            <Typography variant="h4" color="primary" align="center">
+              FEATURED
+            </Typography>
+            <Typography align="center" style={{ margin: "0 10vw" }}>
+              Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris
+              cursus commodo interdum.
+            </Typography>
+            <Card raised style={{ height: "300px", width: "300px" }}></Card>
+          </div>
         </Container>
         <div style={{ height: "100vh" }}></div>
         <Footer />
