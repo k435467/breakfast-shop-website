@@ -148,9 +148,7 @@ export default function Home({ menuCategories }: { menuCategories: MenuCategory[
             Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris
             cursus commodo interdum.
           </Typography>
-          <Box display="flex" justifyContent="center">
-            <CustomCarousel />
-          </Box>
+          <CustomCarousel />
           <ImgTitleDescription direction="row-reverse" />
           <ImgTitleDescription />
           <Typography align="center">
