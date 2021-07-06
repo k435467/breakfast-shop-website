@@ -2,7 +2,7 @@ import { GetStaticProps } from "next";
 import Link from "next/link";
 import { MenuCategory } from "@prisma/client";
 import prisma from "../lib/pirsma";
-import { Typography, Container, Button, Box, Icon, Paper, Grid } from "@material-ui/core";
+import { Typography, Container, Button, Box, Icon, Paper } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { Parallax } from "react-parallax";
 import TargetCategoryContext from "../lib/targetCategoryContext";
@@ -13,6 +13,7 @@ import Footer from "../component/footer";
 import AppBar from "../component/appBar";
 import CustomCarousel from "../component/customCarousel";
 import ImgTitleDescription from "../component/imgTitleDescription";
+import FadeInSection from "../component/fadeInSection";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -83,77 +84,97 @@ export default function Home({ menuCategories }: { menuCategories: MenuCategory[
           strength={500}
         >
           <div className={classes.parallaxContentContainer}>
-            <Paper elevation={24} className={classes.parallaxContent}>
-              <Typography variant="h4" style={{ fontWeight: "bold" }}>
-                BREAKFAST
-              </Typography>
-            </Paper>
+            <FadeInSection>
+              <Paper elevation={24} className={classes.parallaxContent}>
+                <Typography variant="h4" style={{ fontWeight: "bold" }}>
+                  BREAKFAST
+                </Typography>
+              </Paper>
+            </FadeInSection>
           </div>
         </Parallax>
       </div>
-      <div className={classes.diagonalContainer}>
-        <div className={classes.diagonalContent}></div>
-      </div>
+      <FadeInSection>
+        <div className={classes.diagonalContainer}>
+          <div className={classes.diagonalContent}></div>
+        </div>
+      </FadeInSection>
       <div
         style={{
           backgroundImage: "linear-gradient(white, #ffe6c1)",
         }}
       >
         <Container>
-          <Box display="flex" justifyContent="center">
-            <Link href="/menu" passHref>
-              <Button
-                color="primary"
-                onClick={() => {
-                  setTargetCategory(0);
-                }}
-                style={{ fontSize: "2rem" }}
-              >
-                <Typography variant="h4" style={{ fontWeight: "bold" }}>
-                  VIEW MENU
-                </Typography>
-              </Button>
-            </Link>
-          </Box>
-          <Box display="flex" justifyContent="center" flexWrap="wrap">
-            {menuCategories.map((category) => {
-              return (
-                <div key={category.id} style={{ padding: "1rem" }}>
-                  <Link href="/menu" passHref>
-                    <Button
-                      variant="outlined"
-                      color="primary"
-                      classes={{ label: classes.boxBtn }}
-                      onClick={() => {
-                        setTargetCategory(category.id);
-                      }}
-                    >
-                      <Icon fontSize="large">{category.googleIcon}</Icon>
-                      {category.name}
-                    </Button>
-                  </Link>
-                </div>
-              );
-            })}
-          </Box>
-          <Typography
-            variant="h4"
-            color="primary"
-            align="center"
-            style={{ fontWeight: "bold" }}
-          >
-            FEATURED
-          </Typography>
-          <Typography align="center" style={{ margin: "0 10vw" }}>
-            Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris
-            cursus commodo interdum.
-          </Typography>
-          <CustomCarousel />
-          <ImgTitleDescription direction="row-reverse" />
-          <ImgTitleDescription />
-          <Typography align="center">
-            Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet.
-          </Typography>
+          <FadeInSection>
+            <Box display="flex" justifyContent="center">
+              <Link href="/menu" passHref>
+                <Button
+                  color="primary"
+                  onClick={() => {
+                    setTargetCategory(0);
+                  }}
+                  style={{ fontSize: "2rem" }}
+                >
+                  <Typography variant="h4" style={{ fontWeight: "bold" }}>
+                    VIEW MENU
+                  </Typography>
+                </Button>
+              </Link>
+            </Box>
+          </FadeInSection>
+          <FadeInSection>
+            <Box display="flex" justifyContent="center" flexWrap="wrap">
+              {menuCategories.map((category) => {
+                return (
+                  <div key={category.id} style={{ padding: "1rem" }}>
+                    <Link href="/menu" passHref>
+                      <Button
+                        variant="outlined"
+                        color="primary"
+                        classes={{ label: classes.boxBtn }}
+                        onClick={() => {
+                          setTargetCategory(category.id);
+                        }}
+                      >
+                        <Icon fontSize="large">{category.googleIcon}</Icon>
+                        {category.name}
+                      </Button>
+                    </Link>
+                  </div>
+                );
+              })}
+            </Box>
+          </FadeInSection>
+          <FadeInSection>
+            <Typography
+              variant="h4"
+              color="primary"
+              align="center"
+              style={{ fontWeight: "bold" }}
+            >
+              FEATURED
+            </Typography>
+          </FadeInSection>
+          <FadeInSection>
+            <Typography align="center" style={{ margin: "0 10vw" }}>
+              Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris
+              cursus commodo interdum.
+            </Typography>
+          </FadeInSection>
+          <FadeInSection>
+            <CustomCarousel />
+          </FadeInSection>
+          <FadeInSection>
+            <ImgTitleDescription direction="row-reverse" />
+          </FadeInSection>
+          <FadeInSection>
+            <ImgTitleDescription />
+          </FadeInSection>
+          <FadeInSection>
+            <Typography align="center">
+              Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet.
+            </Typography>
+          </FadeInSection>
         </Container>
       </div>
       <Footer />
