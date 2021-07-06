@@ -6,14 +6,16 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     carouselContainer: {
-      height: "250px",
-      // maxWidth: "900px",
+      width: "100%",
+      maxWidth: "800px",
+      height: "calc(100vw - 32px)",
+      maxHeight: "calc(790px - 1.2rem)",
     },
     carouselItem: {
-      // minWidth: "100px",
       margin: "3px",
       padding: "10px",
-      height: "200px",
+      height: "calc(100vw - 32px - 26px)",
+      maxHeight: "calc(790px - 1.2rem - 26px)",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
@@ -38,7 +40,7 @@ function Item({ googleIcon }: { googleIcon: string }) {
   const classes = useStyles();
   return (
     <Paper className={classes.carouselItem}>
-      <Icon style={{ fontSize: "100px", margin: "0 auto" }}>{googleIcon}</Icon>
+      <Icon style={{ fontSize: "100px" }}>{googleIcon}</Icon>
     </Paper>
   );
 }
