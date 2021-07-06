@@ -26,8 +26,8 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function CustomCarousel() {
   const classes = useStyles();
   const items = ["filter_1", "filter_2", "filter_3", "filter_4"];
-  const [carouselAnimation, setCarouselAnimation] = React.useState(
-    "fade" as "fade" | "slide"
+  const [carouselAnimation, setCarouselAnimation] = React.useState<"fade" | "slide">(
+    "fade"
   );
 
   const handleSwitchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
