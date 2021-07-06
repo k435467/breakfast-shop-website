@@ -54,58 +54,64 @@ export default function Menu({
     <>
       <CustomHead />
       <AppBar title="BREAKFAST / MENU" />
-      <Container style={{ paddingTop: "1rem", paddingBottom: "2rem" }}>
-        <Box
-          display="flex"
-          flexWrap="wrap"
-          alignItems="center"
-          style={{ marginBottom: "1rem" }}
-        >
-          <Link href="/" passHref>
-            <Fab color="primary" size="small">
-              <ArrowBackIcon />
-            </Fab>
-          </Link>
-          <Link href="/" passHref>
-            <Button color="primary" size="large">
-              HOME
-            </Button>
-          </Link>
-        </Box>
-        <div style={{ minHeight: "80vh" }}>
-          {menu.map((category) => {
-            return (
-              <Accordion
-                key={category.id}
-                expanded={expanded === category.id}
-                onChange={handleChange(category.id)}
-              >
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
-                  aria-controls={`panel${category.id}a-content`}
-                  id={`panel${category.id}a-header`}
+      <div
+        style={{
+          backgroundImage: "linear-gradient(white, #ffe6c1)",
+        }}
+      >
+        <Container style={{ paddingTop: "1rem", paddingBottom: "2rem" }}>
+          <Box
+            display="flex"
+            flexWrap="wrap"
+            alignItems="center"
+            style={{ marginBottom: "1rem" }}
+          >
+            <Link href="/" passHref>
+              <Fab color="primary" size="small">
+                <ArrowBackIcon />
+              </Fab>
+            </Link>
+            <Link href="/" passHref>
+              <Button color="primary" size="large">
+                HOME
+              </Button>
+            </Link>
+          </Box>
+          <div style={{ minHeight: "80vh" }}>
+            {menu.map((category) => {
+              return (
+                <Accordion
+                  key={category.id}
+                  expanded={expanded === category.id}
+                  onChange={handleChange(category.id)}
                 >
-                  <Typography variant="h6">{category.name}</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <List>
-                    {category.items.map((item) => {
-                      return (
-                        <ListItem key={item.id}>
-                          <ListItemText primary={item.name}></ListItemText>
-                          <ListItemSecondaryAction>
-                            <Typography>{item.pirce}</Typography>
-                          </ListItemSecondaryAction>
-                        </ListItem>
-                      );
-                    })}
-                  </List>
-                </AccordionDetails>
-              </Accordion>
-            );
-          })}
-        </div>
-      </Container>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls={`panel${category.id}a-content`}
+                    id={`panel${category.id}a-header`}
+                  >
+                    <Typography variant="h6">{category.name}</Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <List>
+                      {category.items.map((item) => {
+                        return (
+                          <ListItem key={item.id}>
+                            <ListItemText primary={item.name}></ListItemText>
+                            <ListItemSecondaryAction>
+                              <Typography>{item.pirce}</Typography>
+                            </ListItemSecondaryAction>
+                          </ListItem>
+                        );
+                      })}
+                    </List>
+                  </AccordionDetails>
+                </Accordion>
+              );
+            })}
+          </div>
+        </Container>
+      </div>
       <Footer />
     </>
   );

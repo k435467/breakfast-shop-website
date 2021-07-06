@@ -94,57 +94,70 @@ export default function Home({ menuCategories }: { menuCategories: MenuCategory[
       <div className={classes.diagonalContainer}>
         <div className={classes.diagonalContent}></div>
       </div>
-      <Container>
-        <Box display="flex" justifyContent="center">
-          <Link href="/menu" passHref>
-            <Button
-              color="primary"
-              onClick={() => {
-                setTargetCategory(0);
-              }}
-              style={{ fontSize: "2rem" }}
-            >
-              <Typography variant="h4">VIEW MENU</Typography>
-            </Button>
-          </Link>
-        </Box>
-        <Box display="flex" justifyContent="center" flexWrap="wrap">
-          {menuCategories.map((category) => {
-            return (
-              <div key={category.id} style={{ padding: "1rem" }}>
-                <Link href="/menu" passHref>
-                  <Button
-                    variant="outlined"
-                    color="primary"
-                    classes={{ label: classes.boxBtn }}
-                    onClick={() => {
-                      setTargetCategory(category.id);
-                    }}
-                  >
-                    <Icon fontSize="large">{category.googleIcon}</Icon>
-                    {category.name}
-                  </Button>
-                </Link>
-              </div>
-            );
-          })}
-        </Box>
-        <Typography variant="h4" color="primary" align="center">
-          FEATURED
-        </Typography>
-        <Typography align="center" style={{ margin: "0 10vw" }}>
-          Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris
-          cursus commodo interdum.
-        </Typography>
-        <Box display="flex" justifyContent="center">
-          <CustomCarousel />
-        </Box>
-        <ImgTitleDescription direction="row-reverse" />
-        <ImgTitleDescription />
-        <Typography align="center">
-          Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet.
-        </Typography>
-      </Container>
+      <div
+        style={{
+          backgroundImage: "linear-gradient(white, #ffe6c1)",
+        }}
+      >
+        <Container>
+          <Box display="flex" justifyContent="center">
+            <Link href="/menu" passHref>
+              <Button
+                color="primary"
+                onClick={() => {
+                  setTargetCategory(0);
+                }}
+                style={{ fontSize: "2rem" }}
+              >
+                <Typography variant="h4" style={{ fontWeight: "bold" }}>
+                  VIEW MENU
+                </Typography>
+              </Button>
+            </Link>
+          </Box>
+          <Box display="flex" justifyContent="center" flexWrap="wrap">
+            {menuCategories.map((category) => {
+              return (
+                <div key={category.id} style={{ padding: "1rem" }}>
+                  <Link href="/menu" passHref>
+                    <Button
+                      variant="outlined"
+                      color="primary"
+                      classes={{ label: classes.boxBtn }}
+                      onClick={() => {
+                        setTargetCategory(category.id);
+                      }}
+                    >
+                      <Icon fontSize="large">{category.googleIcon}</Icon>
+                      {category.name}
+                    </Button>
+                  </Link>
+                </div>
+              );
+            })}
+          </Box>
+          <Typography
+            variant="h4"
+            color="primary"
+            align="center"
+            style={{ fontWeight: "bold" }}
+          >
+            FEATURED
+          </Typography>
+          <Typography align="center" style={{ margin: "0 10vw" }}>
+            Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris
+            cursus commodo interdum.
+          </Typography>
+          <Box display="flex" justifyContent="center">
+            <CustomCarousel />
+          </Box>
+          <ImgTitleDescription direction="row-reverse" />
+          <ImgTitleDescription />
+          <Typography align="center">
+            Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet.
+          </Typography>
+        </Container>
+      </div>
       <Footer />
     </>
   );

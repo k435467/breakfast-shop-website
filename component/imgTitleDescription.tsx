@@ -10,6 +10,9 @@ const useStyles = makeStyles((theme: Theme) =>
         textAlign: "center",
       },
     },
+    imgTitle: {
+      fontWeight: "bold",
+    },
     [theme.breakpoints.up("md")]: {
       imgTitle: {
         fontSize: "2.75rem",
@@ -31,7 +34,11 @@ export default function ImgTitleDescription({
     <Grid container spacing={3} direction={direction} style={{ padding: "1rem 5vw" }}>
       <Grid item xs={12} sm={6}>
         <Box display="flex" flexWrap="wrap" height="100%" alignContent="center">
-          <Typography variant="h4" className={`${classes.imgText} ${classes.imgTitle}`}>
+          <Typography
+            variant="h4"
+            className={`${classes.imgText} ${classes.imgTitle}`}
+            color="primary"
+          >
             I am Just for Enrichment
           </Typography>
           <Typography className={`${classes.imgText} ${classes.imgDescription}`}>
