@@ -13,7 +13,11 @@ export default function Head() {
       <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      ></link>
+      />
+      <link
+        rel="stylesheet"
+        href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      />
       <meta
         name="viewport"
         content="minimum-scale=1, initial-scale=1, width=device-width"

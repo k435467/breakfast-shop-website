@@ -5,9 +5,10 @@ import {
   IconButton,
   useScrollTrigger,
   Slide,
+  Icon,
 } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import { GitHub as GitHubIcon } from "@material-ui/icons/";
+import { GitHub as GitHubIcon, Feedback as FeedbackIcon } from "@material-ui/icons/";
 
 function HideOnScroll({ children }: { children: React.ReactElement }) {
   const trigger = useScrollTrigger();
@@ -22,6 +23,10 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     title: {
       flexGrow: 1,
+      marginLeft: "4px",
+    },
+    lunchDiningIcon: {
+      color: "rgba(0, 0, 0, 0.54)",
     },
   })
 );
@@ -32,9 +37,13 @@ export default function AppBar({ title }: { title: string }) {
     <HideOnScroll>
       <MuiAppBar position="sticky">
         <Toolbar>
+          <Icon className={classes.lunchDiningIcon}>lunch_dining</Icon>
           <Typography variant="h6" className={classes.title}>
             {title}
           </Typography>
+          <IconButton>
+            <FeedbackIcon />
+          </IconButton>
           <IconButton>
             <GitHubIcon />
           </IconButton>
