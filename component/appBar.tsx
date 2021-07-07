@@ -6,6 +6,8 @@ import {
   useScrollTrigger,
   Slide,
   Icon,
+  Zoom,
+  Tooltip,
 } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { GitHub as GitHubIcon, Feedback as FeedbackIcon } from "@material-ui/icons/";
@@ -41,12 +43,16 @@ export default function AppBar({ title }: { title: string }) {
           <Typography variant="h6" className={classes.title}>
             {title}
           </Typography>
-          <IconButton>
-            <FeedbackIcon />
-          </IconButton>
-          <IconButton>
-            <GitHubIcon />
-          </IconButton>
+          <Tooltip title="Feedback" arrow TransitionComponent={Zoom} interactive>
+            <IconButton>
+              <FeedbackIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="GitHub" arrow TransitionComponent={Zoom} interactive>
+            <IconButton>
+              <GitHubIcon />
+            </IconButton>
+          </Tooltip>
         </Toolbar>
       </MuiAppBar>
     </HideOnScroll>

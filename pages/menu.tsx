@@ -74,7 +74,7 @@ export default function Menu({
             </Link>
             <Link href="/" passHref>
               <Button color="primary" size="large">
-                HOME
+                <Typography>HOME</Typography>
               </Button>
             </Link>
           </Box>

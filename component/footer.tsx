@@ -1,4 +1,4 @@
-import { Divider, Typography, IconButton } from "@material-ui/core";
+import { Divider, Typography, IconButton, Zoom, Tooltip } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import {
   Facebook as FacebookIcon,
@@ -33,18 +33,26 @@ export default function Footer() {
   return (
     <div className={classes.footerContainer}>
       <div className={classes.iconsContainer}>
-        <IconButton>
-          <FacebookIcon />
-        </IconButton>
-        <IconButton>
-          <TwitterIcon />
-        </IconButton>
-        <IconButton>
-          <LinkedInIcon />
-        </IconButton>
-        <IconButton>
-          <InstagramIcon />
-        </IconButton>
+        <Tooltip title="Facebook" arrow TransitionComponent={Zoom} interactive>
+          <IconButton>
+            <FacebookIcon />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="Twitter" arrow TransitionComponent={Zoom} interactive>
+          <IconButton>
+            <TwitterIcon />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="LinkedIn" arrow TransitionComponent={Zoom} interactive>
+          <IconButton>
+            <LinkedInIcon />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="Instagram" arrow TransitionComponent={Zoom} interactive>
+          <IconButton>
+            <InstagramIcon />
+          </IconButton>
+        </Tooltip>
       </div>
       <Typography align="center">
         Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus
