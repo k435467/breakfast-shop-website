@@ -27,6 +27,7 @@ import React, { useContext, useState } from "react";
 import CustomHead from "../component/customHead";
 import Footer from "../component/footer";
 import AppBar from "../component/appBar";
+import BackToTop from "../component/backToTop";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -112,6 +113,7 @@ export default function Menu({
           </div>
         </Container>
       </div>
+      <BackToTop />
       <Footer />
     </>
   );

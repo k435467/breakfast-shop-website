@@ -1,7 +1,7 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import styles from "./fadeInSection.module.scss";
 
-export default function FadeInSection({ children }: { children: ReactNode }) {
+export default function FadeInSection({ children }: { children: React.ReactElement }) {
   const [isVisible, setIsVisible] = React.useState(false);
   const domRef = React.useRef<HTMLDivElement>(null);
 

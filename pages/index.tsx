@@ -14,6 +14,7 @@ import AppBar from "../component/appBar";
 import CustomCarousel from "../component/customCarousel";
 import ImgTitleDescription from "../component/imgTitleDescription";
 import FadeInSection from "../component/fadeInSection";
+import BackToTop from "../component/backToTop";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -177,6 +178,7 @@ export default function Home({ menuCategories }: { menuCategories: MenuCategory[
           </FadeInSection>
         </Container>
       </div>
+      <BackToTop />
       <Footer />
     </>
   );
