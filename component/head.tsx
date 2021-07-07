@@ -1,10 +1,10 @@
-import Head from "next/head";
+import NextHead from "next/head";
 
 export const siteTitle = "Breakfast Shop";
 
-export default function CustomHead() {
+export default function Head() {
   return (
-    <Head>
+    <NextHead>
       <link rel="icon" href="/favicon.ico" />
       <link
         rel="stylesheet"
@@ -27,6 +27,6 @@ export default function CustomHead() {
       />
       <meta name="og:title" content={siteTitle} />
       <meta name="twitter:card" content="summary_large_image" />
-    </Head>
+    </NextHead>
   );
 }

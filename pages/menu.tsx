@@ -24,7 +24,7 @@ import {
 import TargetCategoryContext from "../lib/targetCategoryContext";
 import React, { useContext, useState } from "react";
 
-import CustomHead from "../component/customHead";
+import Head from "../component/head";
 import Footer from "../component/footer";
 import AppBar from "../component/appBar";
 import BackToTop from "../component/backToTop";
@@ -53,7 +53,7 @@ export default function Menu({
     };
   return (
     <>
-      <CustomHead />
+      <Head />
       <AppBar title="BREAKFAST / MENU" />
       <div
         style={{

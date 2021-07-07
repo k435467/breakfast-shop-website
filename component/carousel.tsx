@@ -1,5 +1,5 @@
 import React from "react";
-import Carousel from "react-material-ui-carousel";
+import MuiCarousel from "react-material-ui-carousel";
 import { Paper, Icon, Box, Grid, Switch, Typography } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function CustomCarousel() {
+export default function Carousel() {
   const classes = useStyles();
   const items = ["filter_1", "filter_2", "filter_3", "filter_4"];
   const [carouselAnimation, setCarouselAnimation] = React.useState<"fade" | "slide">(
@@ -36,11 +36,11 @@ export default function CustomCarousel() {
 
   return (
     <Box display="flex" justifyContent="center" flexWrap="wrap">
-      <Carousel className={classes.carouselContainer} animation={carouselAnimation}>
+      <MuiCarousel className={classes.carouselContainer} animation={carouselAnimation}>
         {items.map((googleIcon, i) => (
           <Item key={i} googleIcon={googleIcon} />
         ))}
-      </Carousel>
+      </MuiCarousel>
       <Grid container alignItems="center" justify="center" spacing={1}>
         <Grid item>
           <Typography>Fade</Typography>
