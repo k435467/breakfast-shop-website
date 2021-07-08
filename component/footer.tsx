@@ -7,6 +7,8 @@ import {
   Instagram as InstagramIcon,
 } from "@material-ui/icons/";
 
+import FooterSnsIcon from "./footerSnsIcon";
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     footerContainer: {
@@ -33,26 +35,18 @@ export default function Footer() {
   return (
     <div className={classes.footerContainer}>
       <div className={classes.iconsContainer}>
-        <Tooltip title="Facebook" arrow TransitionComponent={Zoom} interactive>
-          <IconButton>
-            <FacebookIcon />
-          </IconButton>
-        </Tooltip>
-        <Tooltip title="Twitter" arrow TransitionComponent={Zoom} interactive>
-          <IconButton>
-            <TwitterIcon />
-          </IconButton>
-        </Tooltip>
-        <Tooltip title="LinkedIn" arrow TransitionComponent={Zoom} interactive>
-          <IconButton>
-            <LinkedInIcon />
-          </IconButton>
-        </Tooltip>
-        <Tooltip title="Instagram" arrow TransitionComponent={Zoom} interactive>
-          <IconButton>
-            <InstagramIcon />
-          </IconButton>
-        </Tooltip>
+        <FooterSnsIcon tooltipTitle="Facebook">
+          <FacebookIcon />
+        </FooterSnsIcon>
+        <FooterSnsIcon tooltipTitle="Twitter">
+          <TwitterIcon />
+        </FooterSnsIcon>
+        <FooterSnsIcon tooltipTitle="LinkedIn">
+          <LinkedInIcon />
+        </FooterSnsIcon>
+        <FooterSnsIcon tooltipTitle="Instagram">
+          <InstagramIcon />
+        </FooterSnsIcon>
       </div>
       <Typography align="center">
         Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus
