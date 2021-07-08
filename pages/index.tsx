@@ -2,7 +2,7 @@ import { GetStaticProps } from "next";
 import Link from "next/link";
 import { MenuCategory } from "@prisma/client";
 import prisma from "../lib/pirsma";
-import { Typography, Container, Button, Box, Icon, Paper } from "@material-ui/core";
+import { Typography, Container, Button, Box, Icon, Paper, Grid } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { Parallax } from "react-parallax";
 import TargetCategoryContext from "../lib/targetCategoryContext";
@@ -33,39 +33,23 @@ const useStyles = makeStyles((theme: Theme) =>
       transform: "translate(0, -50px)",
     },
     diagonalContainer: {
-      position: "relative",
-      transform: "translate(0, -100px)",
-      "&:before": {
-        content: '""',
-        position: "absolute",
-        top: 0,
-        right: 0,
-        left: 0,
-        bottom: 0,
-        backgroundImage: `linear-gradient(45deg, ${theme.palette.primary.dark}, ${theme.palette.primary.light})`,
-        transform: "skewY(-7deg)",
+      backgroundImage: `linear-gradient(45deg, ${theme.palette.primary.dark}, ${theme.palette.primary.light})`,
+      transform: "skewY(-7deg) translate(0, -100px)",
+      padding: "60px 0",
+    },
+    diagonalGridItem: {
+      transform: "skewY(7deg)",
+      "&>p": {
+        textAlign: "center",
+        fontWeight: "bold",
+        fontSize: "2rem",
+        color: "white",
       },
-    },
-    diagonalContent: {
-      margin: "0 auto",
-      // height: "300px",
-      height: "calc(100vw * 0.09719 + 80px)",
-      position: "relative",
-      zIndex: 3,
-    },
-    footer: {
-      lineHeight: "5",
-      color: "white",
-      backgroundColor: theme.palette.primary.main,
     },
     boxBtn: {
       flexDirection: "column",
       width: "4rem",
       height: "5rem",
-    },
-    menuLink: {
-      textAlign: "center",
-      textDecoration: "none",
     },
   })
 );
@@ -97,7 +81,19 @@ export default function Home({ menuCategories }: { menuCategories: MenuCategory[
       </div>
       <FadeInSection>
         <div className={classes.diagonalContainer}>
-          <div className={classes.diagonalContent}></div>
+          <Container>
+            <Grid container>
+              <Grid item xs={12} sm={4} className={classes.diagonalGridItem}>
+                <Typography>Speedy</Typography>
+              </Grid>
+              <Grid item xs={12} sm={4} className={classes.diagonalGridItem}>
+                <Typography>Healthy</Typography>
+              </Grid>
+              <Grid item xs={12} sm={4} className={classes.diagonalGridItem}>
+                <Typography>Tasty</Typography>
+              </Grid>
+            </Grid>
+          </Container>
         </div>
       </FadeInSection>
       <div
