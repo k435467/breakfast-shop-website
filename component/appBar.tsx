@@ -11,6 +11,7 @@ import {
 } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { GitHub as GitHubIcon, Feedback as FeedbackIcon } from "@material-ui/icons/";
+import FeedbackIconButton from "./feedbackIconButton";
 
 function HideOnScroll({ children }: { children: React.ReactElement }) {
   const trigger = useScrollTrigger();
@@ -43,13 +44,9 @@ export default function AppBar({ title }: { title: string }) {
           <Typography variant="h6" className={classes.title}>
             {title}
           </Typography>
-          <Tooltip title="Feedback" arrow TransitionComponent={Zoom} interactive>
-            <IconButton>
-              <FeedbackIcon />
-            </IconButton>
-          </Tooltip>
+          <FeedbackIconButton />
           <Tooltip title="GitHub" arrow TransitionComponent={Zoom} interactive>
-            <IconButton>
+            <IconButton href="https://github.com/k435467/breakfast-shop-website">
               <GitHubIcon />
             </IconButton>
           </Tooltip>
