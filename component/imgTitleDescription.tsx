@@ -41,7 +41,10 @@ export default function ImgTitleDescription({
           >
             I am Just for Enrichment
           </Typography>
-          <Typography className={`${classes.imgText} ${classes.imgDescription}`}>
+          <Typography
+            color="textSecondary"
+            className={`${classes.imgText} ${classes.imgDescription}`}
+          >
             Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris
             cursus commodo interdum.
           </Typography>

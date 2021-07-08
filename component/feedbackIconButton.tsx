@@ -80,10 +80,10 @@ export default function CustomizedDialogs() {
       </Tooltip>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Feedback
+          <Typography style={{ fontWeight: "bold" }}>Feedback</Typography>
         </DialogTitle>
         <DialogContent dividers>
-          <Typography gutterBottom>
+          <Typography color="textSecondary" gutterBottom>
             Open a issue or pull requests on the GitHub repo are welcome. Click the GitHub
             icon on the navigation bar or contact me via email ( k435467@gmail.com ).
           </Typography>

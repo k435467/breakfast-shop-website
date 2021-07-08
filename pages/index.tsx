@@ -157,7 +157,7 @@ export default function Home({ menuCategories }: { menuCategories: MenuCategory[
             </Typography>
           </FadeInSection>
           <FadeInSection>
-            <Typography align="center" style={{ margin: "0 10vw" }}>
+            <Typography color="textSecondary" align="center" style={{ margin: "0 10vw" }}>
               Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris
               cursus commodo interdum.
             </Typography>
@@ -172,7 +172,11 @@ export default function Home({ menuCategories }: { menuCategories: MenuCategory[
             <ImgTitleDescription />
           </FadeInSection>
           <FadeInSection>
-            <Typography align="center">
+            <Typography
+              color="textSecondary"
+              align="center"
+              style={{ paddingTop: "1rem", paddingBottom: "2rem" }}
+            >
               Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet.
             </Typography>
           </FadeInSection>
