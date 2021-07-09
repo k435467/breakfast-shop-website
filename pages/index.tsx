@@ -2,7 +2,16 @@ import { GetStaticProps } from "next";
 import Link from "next/link";
 import { MenuCategory } from "@prisma/client";
 import prisma from "../lib/pirsma";
-import { Typography, Container, Button, Box, Icon, Paper, Grid } from "@material-ui/core";
+import {
+  Typography,
+  Container,
+  Button,
+  Box,
+  Icon,
+  Paper,
+  Grid,
+  Fade,
+} from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { Parallax } from "react-parallax";
 import TargetCategoryContext from "../lib/targetCategoryContext";
@@ -39,12 +48,12 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     diagonalGridItem: {
       transform: "skewY(7deg)",
-      "&>p": {
-        textAlign: "center",
-        fontWeight: "bold",
-        fontSize: "2rem",
-        color: "white",
-      },
+    },
+    diagonalGridItemText: {
+      textAlign: "center",
+      fontWeight: "bold",
+      fontSize: "2rem",
+      color: "white",
     },
     boxBtn: {
       flexDirection: "column",
@@ -61,36 +70,46 @@ export default function Home({ menuCategories }: { menuCategories: MenuCategory[
     <>
       <Head />
       <AppBar title="BREAKFAST" />
-      <div style={{ paddingTop: "6px" }}>
-        <Parallax
-          // blur={{ min: -1, max: 3 }}
-          bgImage="/images/food-icons.jpg"
-          bgImageAlt="food icons"
-          strength={500}
-        >
-          <div className={classes.parallaxContentContainer}>
-            <FadeInSection>
-              <Paper elevation={24} className={classes.parallaxContent}>
-                <Typography variant="h4" style={{ fontWeight: "bold" }}>
-                  BREAKFAST
-                </Typography>
-              </Paper>
-            </FadeInSection>
-          </div>
-        </Parallax>
-      </div>
+      <Fade in={true} timeout={3000}>
+        <div style={{ paddingTop: "6px" }}>
+          <Parallax
+            // blur={{ min: -1, max: 3 }}
+            bgImage="/images/food-icons.jpg"
+            bgImageAlt="food icons"
+            strength={500}
+          >
+            <div className={classes.parallaxContentContainer}>
+              <FadeInSection>
+                <Paper elevation={24} className={classes.parallaxContent}>
+                  <Typography variant="h4" style={{ fontWeight: "bold" }}>
+                    BREAKFAST
+                  </Typography>
+                </Paper>
+              </FadeInSection>
+            </div>
+          </Parallax>
+        </div>
+      </Fade>
       <FadeInSection>
         <div className={classes.diagonalContainer}>
           <Container>
             <Grid container>
               <Grid item xs={12} sm={4} className={classes.diagonalGridItem}>
-                <Typography>Speedy</Typography>
+                <FadeInSection delay={200}>
+                  <Typography className={classes.diagonalGridItemText}>Speedy</Typography>
+                </FadeInSection>
               </Grid>
               <Grid item xs={12} sm={4} className={classes.diagonalGridItem}>
-                <Typography>Healthy</Typography>
+                <FadeInSection delay={100}>
+                  <Typography className={classes.diagonalGridItemText}>
+                    Healthy
+                  </Typography>
+                </FadeInSection>
               </Grid>
               <Grid item xs={12} sm={4} className={classes.diagonalGridItem}>
-                <Typography>Tasty</Typography>
+                <FadeInSection>
+                  <Typography className={classes.diagonalGridItemText}>Tasty</Typography>
+                </FadeInSection>
               </Grid>
             </Grid>
           </Container>
@@ -119,11 +138,11 @@ export default function Home({ menuCategories }: { menuCategories: MenuCategory[
               </Link>
             </Box>
           </FadeInSection>
-          <FadeInSection>
-            <Box display="flex" justifyContent="center" flexWrap="wrap">
-              {menuCategories.map((category) => {
-                return (
-                  <div key={category.id} style={{ padding: "16px" }}>
+          <Box display="flex" justifyContent="center" flexWrap="wrap">
+            {menuCategories.map((category, i) => {
+              return (
+                <div key={category.id} style={{ padding: "16px" }}>
+                  <FadeInSection delay={i * 120}>
                     <Link href="/menu" passHref>
                       <Button
                         variant="outlined"
@@ -137,11 +156,11 @@ export default function Home({ menuCategories }: { menuCategories: MenuCategory[
                         {category.name}
                       </Button>
                     </Link>
-                  </div>
-                );
-              })}
-            </Box>
-          </FadeInSection>
+                  </FadeInSection>
+                </div>
+              );
+            })}
+          </Box>
           <FadeInSection>
             <Typography
               variant="h4"

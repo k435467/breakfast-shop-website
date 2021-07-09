@@ -15,6 +15,8 @@ import {
   Fab,
   Box,
   Button,
+  Fade,
+  Slide,
 } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import {
@@ -67,47 +69,63 @@ export default function Menu({
             alignItems="center"
             style={{ marginBottom: "16px" }}
           >
-            <Link href="/" passHref>
-              <Fab color="primary" size="small">
-                <ArrowBackIcon />
-              </Fab>
-            </Link>
-            <Link href="/" passHref>
-              <Button color="primary" size="large">
-                <Typography>HOME</Typography>
-              </Button>
-            </Link>
+            <Fade in={true} timeout={1000}>
+              <>
+                <Link href="/" passHref>
+                  <Fab color="primary" size="small">
+                    <ArrowBackIcon />
+                  </Fab>
+                </Link>
+                <Link href="/" passHref>
+                  <Button color="primary" size="large">
+                    <Typography>HOME</Typography>
+                  </Button>
+                </Link>
+              </>
+            </Fade>
           </Box>
           <div style={{ minHeight: "80vh" }}>
-            {menu.map((category) => {
+            {menu.map((category, i) => {
               return (
-                <Accordion
-                  key={category.id}
-                  expanded={expanded === category.id}
-                  onChange={handleChange(category.id)}
-                >
-                  <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls={`panel${category.id}a-content`}
-                    id={`panel${category.id}a-header`}
-                  >
-                    <Typography variant="h6">{category.name}</Typography>
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    <List>
-                      {category.items.map((item) => {
-                        return (
-                          <ListItem key={item.id}>
-                            <ListItemText primary={item.name}></ListItemText>
-                            <ListItemSecondaryAction>
-                              <Typography>{item.pirce}</Typography>
-                            </ListItemSecondaryAction>
-                          </ListItem>
-                        );
-                      })}
-                    </List>
-                  </AccordionDetails>
-                </Accordion>
+                <Fade in={true} timeout={1000 + i * 150} key={category.id}>
+                  <div>
+                    <Slide
+                      in={true}
+                      timeout={1000 + i * 100}
+                      direction="down"
+                      mountOnEnter
+                      unmountOnExit
+                    >
+                      <Accordion
+                        expanded={expanded === category.id}
+                        onChange={handleChange(category.id)}
+                        style={{ marginBottom: "1px" }}
+                      >
+                        <AccordionSummary
+                          expandIcon={<ExpandMoreIcon />}
+                          aria-controls={`panel${category.id}a-content`}
+                          id={`panel${category.id}a-header`}
+                        >
+                          <Typography variant="h6">{category.name}</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                          <List>
+                            {category.items.map((item) => {
+                              return (
+                                <ListItem key={item.id}>
+                                  <ListItemText primary={item.name}></ListItemText>
+                                  <ListItemSecondaryAction>
+                                    <Typography>{item.pirce}</Typography>
+                                  </ListItemSecondaryAction>
+                                </ListItem>
+                              );
+                            })}
+                          </List>
+                        </AccordionDetails>
+                      </Accordion>
+                    </Slide>
+                  </div>
+                </Fade>
               );
             })}
           </div>
