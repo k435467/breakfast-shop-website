@@ -61,7 +61,7 @@ export default function Home({ menuCategories }: { menuCategories: MenuCategory[
     <>
       <Head />
       <AppBar title="BREAKFAST" />
-      <div style={{ paddingTop: "0.4rem" }}>
+      <div style={{ paddingTop: "6px" }}>
         <Parallax
           // blur={{ min: -1, max: 3 }}
           bgImage="/images/food-icons.jpg"
@@ -123,7 +123,7 @@ export default function Home({ menuCategories }: { menuCategories: MenuCategory[
             <Box display="flex" justifyContent="center" flexWrap="wrap">
               {menuCategories.map((category) => {
                 return (
-                  <div key={category.id} style={{ padding: "1rem" }}>
+                  <div key={category.id} style={{ padding: "16px" }}>
                     <Link href="/menu" passHref>
                       <Button
                         variant="outlined"
@@ -147,13 +147,17 @@ export default function Home({ menuCategories }: { menuCategories: MenuCategory[
               variant="h4"
               color="primary"
               align="center"
-              style={{ fontWeight: "bold" }}
+              style={{ fontWeight: "bold", paddingTop: "50px" }}
             >
               FEATURED
             </Typography>
           </FadeInSection>
           <FadeInSection>
-            <Typography color="textSecondary" align="center" style={{ margin: "0 10vw" }}>
+            <Typography
+              color="textSecondary"
+              align="center"
+              style={{ margin: "0 10vw", paddingBottom: "30px" }}
+            >
               Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris
               cursus commodo interdum.
             </Typography>
@@ -171,7 +175,7 @@ export default function Home({ menuCategories }: { menuCategories: MenuCategory[
             <Typography
               color="textSecondary"
               align="center"
-              style={{ paddingTop: "1rem", paddingBottom: "2rem" }}
+              style={{ paddingTop: "40px", paddingBottom: "60px" }}
             >
               Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet.
             </Typography>

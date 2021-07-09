@@ -13,14 +13,6 @@ const useStyles = makeStyles((theme: Theme) =>
     imgTitle: {
       fontWeight: "bold",
     },
-    [theme.breakpoints.up("md")]: {
-      imgTitle: {
-        fontSize: "2.75rem",
-      },
-      imgDescription: {
-        fontSize: "1.35rem",
-      },
-    },
   })
 );
 
@@ -31,7 +23,7 @@ export default function ImgTitleDescription({
 }) {
   const classes = useStyles();
   return (
-    <Grid container spacing={3} direction={direction} style={{ padding: "1rem 5vw" }}>
+    <Grid container spacing={3} direction={direction} style={{ padding: "50px 5vw 0" }}>
       <Grid item xs={12} sm={6}>
         <Box display="flex" flexWrap="wrap" height="100%" alignContent="center">
           <Typography
@@ -41,10 +33,7 @@ export default function ImgTitleDescription({
           >
             I am Just for Enrichment
           </Typography>
-          <Typography
-            color="textSecondary"
-            className={`${classes.imgText} ${classes.imgDescription}`}
-          >
+          <Typography color="textSecondary" className={classes.imgText}>
             Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris
             cursus commodo interdum.
           </Typography>

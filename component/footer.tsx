@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme: Theme) =>
       width: "100%",
       color: "white",
       backgroundColor: theme.palette.primary.main,
-      padding: "1rem 1.5rem",
+      padding: "16px 24px",
     },
     iconsContainer: {
       display: "flex",
@@ -24,8 +24,8 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     whiteDivider: {
       background: "hsla(0,0%,100%,.4)",
-      marginTop: ".75rem",
-      marginBottom: ".75rem",
+      marginTop: "12px",
+      marginBottom: "12px",
     },
   })
 );

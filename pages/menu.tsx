@@ -60,12 +60,12 @@ export default function Menu({
           backgroundImage: "linear-gradient(white, #ffe6c1)",
         }}
       >
-        <Container style={{ paddingTop: "1rem", paddingBottom: "2rem" }}>
+        <Container style={{ paddingTop: "20px", paddingBottom: "40px" }}>
           <Box
             display="flex"
             flexWrap="wrap"
             alignItems="center"
-            style={{ marginBottom: "1rem" }}
+            style={{ marginBottom: "16px" }}
           >
             <Link href="/" passHref>
               <Fab color="primary" size="small">
