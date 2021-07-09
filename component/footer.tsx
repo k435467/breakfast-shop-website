@@ -1,4 +1,4 @@
-import { Divider, Typography, IconButton } from "@material-ui/core";
+import { Divider, Typography, IconButton, Zoom, Tooltip } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import {
   Facebook as FacebookIcon,
@@ -7,13 +7,15 @@ import {
   Instagram as InstagramIcon,
 } from "@material-ui/icons/";
 
+import FooterSnsIcon from "./footerSnsIcon";
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     footerContainer: {
       width: "100%",
       color: "white",
       backgroundColor: theme.palette.primary.main,
-      padding: "1rem 1.5rem",
+      padding: "16px 24px",
     },
     iconsContainer: {
       display: "flex",
@@ -22,8 +24,8 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     whiteDivider: {
       background: "hsla(0,0%,100%,.4)",
-      marginTop: ".75rem",
-      marginBottom: ".75rem",
+      marginTop: "12px",
+      marginBottom: "12px",
     },
   })
 );
@@ -33,18 +35,18 @@ export default function Footer() {
   return (
     <div className={classes.footerContainer}>
       <div className={classes.iconsContainer}>
-        <IconButton>
+        <FooterSnsIcon tooltipTitle="Facebook">
           <FacebookIcon />
-        </IconButton>
-        <IconButton>
+        </FooterSnsIcon>
+        <FooterSnsIcon tooltipTitle="Twitter">
           <TwitterIcon />
-        </IconButton>
-        <IconButton>
+        </FooterSnsIcon>
+        <FooterSnsIcon tooltipTitle="LinkedIn">
           <LinkedInIcon />
-        </IconButton>
-        <IconButton>
+        </FooterSnsIcon>
+        <FooterSnsIcon tooltipTitle="Instagram">
           <InstagramIcon />
-        </IconButton>
+        </FooterSnsIcon>
       </div>
       <Typography align="center">
         Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus

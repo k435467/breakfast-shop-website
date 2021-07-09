@@ -2,15 +2,28 @@ import { GetStaticProps } from "next";
 import Link from "next/link";
 import { MenuCategory } from "@prisma/client";
 import prisma from "../lib/pirsma";
-import { Typography, Container, Button, Box, Icon, Paper } from "@material-ui/core";
+import {
+  Typography,
+  Container,
+  Button,
+  Box,
+  Icon,
+  Paper,
+  Grid,
+  Fade,
+} from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { Parallax } from "react-parallax";
 import TargetCategoryContext from "../lib/targetCategoryContext";
 import { useContext } from "react";
 
-import Layout from "../component/layout";
+import Head from "../component/head";
 import Footer from "../component/footer";
 import AppBar from "../component/appBar";
+import Carousel from "../component/carousel";
+import ImgTitleDescription from "../component/imgTitleDescription";
+import FadeInSection from "../component/fadeInSection";
+import BackToTop from "../component/backToTop";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -29,38 +42,23 @@ const useStyles = makeStyles((theme: Theme) =>
       transform: "translate(0, -50px)",
     },
     diagonalContainer: {
-      position: "relative",
-      transform: "translate(0, -100px)",
-      "&:before": {
-        content: '""',
-        position: "absolute",
-        top: 0,
-        right: 0,
-        left: 0,
-        bottom: 0,
-        backgroundImage: `linear-gradient(45deg, ${theme.palette.primary.dark}, ${theme.palette.primary.light})`,
-        transform: "skewY(-11deg)",
-      },
+      backgroundImage: `linear-gradient(45deg, ${theme.palette.primary.dark}, ${theme.palette.primary.light})`,
+      transform: "skewY(-7deg) translate(0, -100px)",
+      padding: "60px 0",
     },
-    diagonalContent: {
-      margin: "0 auto",
-      height: "300px",
-      position: "relative",
-      zIndex: 3,
+    diagonalGridItem: {
+      transform: "skewY(7deg)",
     },
-    footer: {
-      lineHeight: "5",
+    diagonalGridItemText: {
+      textAlign: "center",
+      fontWeight: "bold",
+      fontSize: "2rem",
       color: "white",
-      backgroundColor: theme.palette.primary.main,
     },
     boxBtn: {
       flexDirection: "column",
       width: "4rem",
       height: "5rem",
-    },
-    menuLink: {
-      textAlign: "center",
-      textDecoration: "none",
     },
   })
 );
@@ -69,10 +67,11 @@ export default function Home({ menuCategories }: { menuCategories: MenuCategory[
   const classes = useStyles();
   const { targetCategory, setTargetCategory } = useContext(TargetCategoryContext);
   return (
-    <Layout>
-      <>
-        <AppBar title="BREAKFAST" />
-        <div style={{ paddingTop: "0.4rem" }}>
+    <>
+      <Head />
+      <AppBar title="BREAKFAST" />
+      <Fade in={true} timeout={3000}>
+        <div style={{ paddingTop: "6px" }}>
           <Parallax
             // blur={{ min: -1, max: 3 }}
             bgImage="/images/food-icons.jpg"
@@ -80,57 +79,131 @@ export default function Home({ menuCategories }: { menuCategories: MenuCategory[
             strength={500}
           >
             <div className={classes.parallaxContentContainer}>
-              <Paper elevation={24} className={classes.parallaxContent}>
-                <Typography variant="h4" style={{ fontWeight: "bold" }}>
-                  BREAKFAST
-                </Typography>
-              </Paper>
+              <FadeInSection>
+                <Paper elevation={24} className={classes.parallaxContent}>
+                  <Typography variant="h4" style={{ fontWeight: "bold" }}>
+                    BREAKFAST
+                  </Typography>
+                </Paper>
+              </FadeInSection>
             </div>
           </Parallax>
         </div>
+      </Fade>
+      <FadeInSection>
         <div className={classes.diagonalContainer}>
-          <div className={classes.diagonalContent}></div>
+          <Container>
+            <Grid container>
+              <Grid item xs={12} sm={4} className={classes.diagonalGridItem}>
+                <FadeInSection delay={200}>
+                  <Typography className={classes.diagonalGridItemText}>Speedy</Typography>
+                </FadeInSection>
+              </Grid>
+              <Grid item xs={12} sm={4} className={classes.diagonalGridItem}>
+                <FadeInSection delay={100}>
+                  <Typography className={classes.diagonalGridItemText}>
+                    Healthy
+                  </Typography>
+                </FadeInSection>
+              </Grid>
+              <Grid item xs={12} sm={4} className={classes.diagonalGridItem}>
+                <FadeInSection>
+                  <Typography className={classes.diagonalGridItemText}>Tasty</Typography>
+                </FadeInSection>
+              </Grid>
+            </Grid>
+          </Container>
         </div>
+      </FadeInSection>
+      <div
+        style={{
+          backgroundImage: "linear-gradient(white, #ffe6c1)",
+        }}
+      >
         <Container>
-          <Box display="flex" justifyContent="center">
-            <Link href="/menu" passHref>
-              <Button
-                color="primary"
-                onClick={() => {
-                  setTargetCategory(0);
-                }}
-                style={{ fontSize: "2rem" }}
-              >
-                VIEW MENU
-              </Button>
-            </Link>
-          </Box>
+          <FadeInSection>
+            <Box display="flex" justifyContent="center">
+              <Link href="/menu" passHref>
+                <Button
+                  color="primary"
+                  onClick={() => {
+                    setTargetCategory(0);
+                  }}
+                  style={{ fontSize: "2rem" }}
+                >
+                  <Typography variant="h4" style={{ fontWeight: "bold" }}>
+                    VIEW MENU
+                  </Typography>
+                </Button>
+              </Link>
+            </Box>
+          </FadeInSection>
           <Box display="flex" justifyContent="center" flexWrap="wrap">
-            {menuCategories.map((category) => {
+            {menuCategories.map((category, i) => {
               return (
-                <div key={category.id} style={{ padding: "1rem" }}>
-                  <Link href="/menu" passHref>
-                    <Button
-                      variant="outlined"
-                      color="primary"
-                      classes={{ label: classes.boxBtn }}
-                      onClick={() => {
-                        setTargetCategory(category.id);
-                      }}
-                    >
-                      <Icon fontSize="large">{category.googleIcon}</Icon>
-                      {category.name}
-                    </Button>
-                  </Link>
+                <div key={category.id} style={{ padding: "16px" }}>
+                  <FadeInSection delay={i * 120}>
+                    <Link href="/menu" passHref>
+                      <Button
+                        variant="outlined"
+                        color="primary"
+                        classes={{ label: classes.boxBtn }}
+                        onClick={() => {
+                          setTargetCategory(category.id);
+                        }}
+                      >
+                        <Icon fontSize="large">{category.googleIcon}</Icon>
+                        {category.name}
+                      </Button>
+                    </Link>
+                  </FadeInSection>
                 </div>
               );
             })}
           </Box>
+          <FadeInSection>
+            <Typography
+              variant="h4"
+              color="primary"
+              align="center"
+              style={{ fontWeight: "bold", paddingTop: "50px" }}
+            >
+              FEATURED
+            </Typography>
+          </FadeInSection>
+          <FadeInSection>
+            <Typography
+              color="textSecondary"
+              align="center"
+              style={{ margin: "0 10vw", paddingBottom: "30px" }}
+            >
+              Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris
+              cursus commodo interdum.
+            </Typography>
+          </FadeInSection>
+          <FadeInSection>
+            <Carousel />
+          </FadeInSection>
+          <FadeInSection>
+            <ImgTitleDescription direction="row-reverse" />
+          </FadeInSection>
+          <FadeInSection>
+            <ImgTitleDescription />
+          </FadeInSection>
+          <FadeInSection>
+            <Typography
+              color="textSecondary"
+              align="center"
+              style={{ paddingTop: "40px", paddingBottom: "60px" }}
+            >
+              Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet.
+            </Typography>
+          </FadeInSection>
         </Container>
-        <div style={{ height: "100vh" }}></div>
-        <Footer />
-      </>
-    </Layout>
+      </div>
+      <BackToTop />
+      <Footer />
+    </>
   );
 }
 
