@@ -1,5 +1,6 @@
 import { GetStaticProps } from "next";
 import Link from "next/link";
+import NextHead from "next/head";
 import { MenuCategory, MenuItem } from "@prisma/client";
 import prisma from "../lib/pirsma";
 import {
@@ -56,6 +57,9 @@ export default function Menu({
   return (
     <>
       <Head />
+      <NextHead>
+        <title>k435467 Breakfast Shop: Menu</title>
+      </NextHead>
       <AppBar title="BREAKFAST / MENU" />
       <div
         style={{

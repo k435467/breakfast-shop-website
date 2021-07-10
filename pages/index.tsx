@@ -1,5 +1,6 @@
 import { GetStaticProps } from "next";
 import Link from "next/link";
+import NextHead from "next/head";
 import { MenuCategory } from "@prisma/client";
 import prisma from "../lib/pirsma";
 import {
@@ -69,6 +70,9 @@ export default function Home({ menuCategories }: { menuCategories: MenuCategory[
   return (
     <>
       <Head />
+      <NextHead>
+        <title>k435467 Breakfast Shop: Tasty, Healthy and Speedy</title>
+      </NextHead>
       <AppBar title="BREAKFAST" />
       <Fade in={true} timeout={3000}>
         <div style={{ paddingTop: "6px" }}>
