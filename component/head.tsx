@@ -6,6 +6,10 @@ export default function Head() {
   return (
     <NextHead>
       <link rel="icon" href="/favicon.ico" />
+      <meta
+        name="google-site-verification"
+        content="oDogpyQxtdwnNeYat4Juvg21XuxSmSag5RIJRJlDkwY"
+      />
       <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Roboto|Raleway&display=swap"
@@ -22,7 +26,7 @@ export default function Head() {
         name="viewport"
         content="minimum-scale=1, initial-scale=1, width=device-width"
       />
-      <meta name="description" content="a breakfast shop website" />
+      <meta name="description" content="a breakfast shop website created by k435467." />
       <meta
         property="og:image"
         content={`https://og-image.vercel.app/${encodeURI(

@@ -58,7 +58,7 @@ export default function Footer() {
         parturient montes, nascetur ridiculus mus.
       </Typography>
       <Divider variant="middle" className={classes.whiteDivider} />
-      <Typography align="center">Developed by k435467</Typography>
+      <Typography align="center">Created by k435467</Typography>
     </div>
   );
 }
