@@ -38,7 +38,7 @@ export default function Head() {
       /> */}
       <meta
         property="og:image"
-        content="blob:https://vercel.com/4c1e16dd-d86d-4ffc-8052-3900d11db310"
+        content="https://breakfast-shop-website.vercel.app/images/ogimg.png"
       />
       <meta name="og:title" content={siteTitle} />
       <meta name="twitter:card" content="summary_large_image" />
