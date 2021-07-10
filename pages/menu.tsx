@@ -25,7 +25,7 @@ import {
   ArrowBack as ArrowBackIcon,
 } from "@material-ui/icons";
 import TargetCategoryContext from "../lib/targetCategoryContext";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import Head from "../component/head";
 import Footer from "../component/footer";
@@ -50,10 +50,27 @@ export default function Menu({
   const classes = useStyles();
   const { targetCategory, setTargetCategory } = useContext(TargetCategoryContext);
   const [expanded, setExpanded] = useState<number | false>(targetCategory);
+  const [isLandscapeMode, setIsLandscapeMode] = useState(false);
   const handleChange =
     (id: number) => (event: React.ChangeEvent<{}>, isExpanded: boolean) => {
       setExpanded(isExpanded ? id : false);
     };
+
+  const handleResize = () => {
+    if (typeof window !== "undefined") {
+      if (window.innerWidth > window.innerHeight) {
+        setIsLandscapeMode(true);
+      } else {
+        setIsLandscapeMode(false);
+      }
+    }
+  };
+  useEffect(() => {
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <>
       <Head />
@@ -89,49 +106,58 @@ export default function Menu({
             </Fade>
           </Box>
           <div style={{ minHeight: "80vh" }}>
-            {menu.map((category, i) => {
-              return (
-                <Fade in={true} timeout={1000 + i * 150} key={category.id}>
-                  <div>
-                    <Slide
-                      in={true}
-                      timeout={1000 + i * 100}
-                      direction="down"
-                      mountOnEnter
-                      unmountOnExit
-                    >
-                      <Accordion
-                        expanded={expanded === category.id}
-                        onChange={handleChange(category.id)}
-                        style={{ marginBottom: "1px" }}
+            <Box
+              display="flex"
+              flexDirection={isLandscapeMode ? "row" : "column"}
+              overflow="auto"
+            >
+              {menu.map((category, i) => {
+                return (
+                  <Fade in={true} timeout={1000 + i * 150} key={category.id}>
+                    <div>
+                      <Slide
+                        in={true}
+                        timeout={1000 + i * 100}
+                        direction="down"
+                        mountOnEnter
+                        unmountOnExit
                       >
-                        <AccordionSummary
-                          expandIcon={<ExpandMoreIcon />}
-                          aria-controls={`panel${category.id}a-content`}
-                          id={`panel${category.id}a-header`}
+                        <Accordion
+                          expanded={isLandscapeMode || expanded === category.id}
+                          onChange={handleChange(category.id)}
+                          style={{ marginBottom: "1px" }}
                         >
-                          <Typography variant="h6">{category.name}</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                          <List>
-                            {category.items.map((item) => {
-                              return (
-                                <ListItem key={item.id}>
-                                  <ListItemText primary={item.name}></ListItemText>
-                                  <ListItemSecondaryAction>
-                                    <Typography>{item.pirce}</Typography>
-                                  </ListItemSecondaryAction>
-                                </ListItem>
-                              );
-                            })}
-                          </List>
-                        </AccordionDetails>
-                      </Accordion>
-                    </Slide>
-                  </div>
-                </Fade>
-              );
-            })}
+                          <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls={`panel${category.id}a-content`}
+                            id={`panel${category.id}a-header`}
+                          >
+                            <Typography variant="h6">{category.name}</Typography>
+                          </AccordionSummary>
+                          <AccordionDetails>
+                            <List>
+                              {category.items.map((item) => {
+                                return (
+                                  <ListItem key={item.id}>
+                                    <ListItemText
+                                      primary={item.name}
+                                      style={{ wordBreak: "keep-all" }}
+                                    ></ListItemText>
+                                    <ListItemSecondaryAction>
+                                      <Typography>{item.pirce}</Typography>
+                                    </ListItemSecondaryAction>
+                                  </ListItem>
+                                );
+                              })}
+                            </List>
+                          </AccordionDetails>
+                        </Accordion>
+                      </Slide>
+                    </div>
+                  </Fade>
+                );
+              })}
+            </Box>
           </div>
         </Container>
       </div>
