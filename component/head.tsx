@@ -30,17 +30,22 @@ export default function Head() {
         name="description"
         content="A breakfast shop website created by k435467 using Vercel, Nextjs, Reactjs, Typescript, Prisma, Material UI... For more information: https://github.com/k435467/breakfast-shop-website."
       />
-      {/* <meta
-        property="og:image"
-        content={`https://og-image.vercel.app/${encodeURI(
-          siteTitle
-        )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.zeit.co%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
-      /> */}
+      <meta property="og:url" content="https://breakfast-shop-website.vercel.app/" />
+      <meta property="og:locale" content="zh_TW" />
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content={siteTitle} />
+      <meta
+        property="og:description"
+        content="A breakfast shop website created by k435467 using Vercel, Nextjs, Reactjs, Typescript, Prisma, Material UI... For more information: https://github.com/k435467/breakfast-shop-website."
+      />
       <meta
         property="og:image"
         content="https://breakfast-shop-website.vercel.app/images/ogimg.png"
       />
-      <meta name="og:title" content={siteTitle} />
+      <meta property="og:image:alt" content={siteTitle} />
+      <meta property="og:image:type" content="image/png" />
+      <meta property="og:image:width" content="797" />
+      <meta property="og:image:height" content="411" />
       <meta name="twitter:card" content="summary_large_image" />
     </NextHead>
   );
