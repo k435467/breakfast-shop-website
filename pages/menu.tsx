@@ -31,6 +31,7 @@ import Head from "../component/head";
 import Footer from "../component/footer";
 import AppBar from "../component/appBar";
 import BackToTop from "../component/backToTop";
+import ResizeRotatePrompt from "../component/resizeRotatePrompt";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -91,18 +92,21 @@ export default function Menu({
             style={{ marginBottom: "16px" }}
           >
             <Fade in={true} timeout={1000}>
-              <>
-                <Link href="/" passHref>
-                  <Fab color="primary" size="small">
-                    <ArrowBackIcon />
-                  </Fab>
-                </Link>
-                <Link href="/" passHref>
-                  <Button color="primary" size="large">
-                    <Typography>HOME</Typography>
-                  </Button>
-                </Link>
-              </>
+              <Box display="flex" width="100%" alignItems="center">
+                <div style={{ flexGrow: 1 }}>
+                  <Link href="/" passHref>
+                    <Fab color="primary" size="small">
+                      <ArrowBackIcon />
+                    </Fab>
+                  </Link>
+                  <Link href="/" passHref>
+                    <Button color="primary" size="large">
+                      <Typography>HOME</Typography>
+                    </Button>
+                  </Link>
+                </div>
+                <ResizeRotatePrompt />
+              </Box>
             </Fade>
           </Box>
           <div style={{ minHeight: "80vh" }}>
