@@ -5,6 +5,7 @@
   - [File Structure](#file-structure)
   - [Usage](#usage)
   - [Difficulties Encountered](#difficulties-encountered)
+  - [Further Improvement in the Future](#further-improvement-in-the-future)
 
 ## Features
 
@@ -75,3 +76,9 @@ yarn run dev    # start nextjs dev server
 - parallax. Solution: react-parallax.
 - carousel. Solution: react-material-ui-carousel.
 - fade in content as it scrolls into view. Solution: a article, IntersectionObserver.
+
+## Further Improvement in the Future
+
+- user account. Solution: next-auth
+- edit menu. Solution: nextjs api route and prisma
+- menu item independent page. Solution: nextjs dynamic route
