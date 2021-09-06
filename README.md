@@ -12,7 +12,7 @@
 - Typescript
 - React
 - Prisma
-- Material UI
+- Material-UI
 - Next.js
   - Code splitting and prefetching
   - Static Generation
