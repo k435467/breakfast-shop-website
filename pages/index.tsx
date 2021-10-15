@@ -74,26 +74,26 @@ export default function Home({ menuCategories }: { menuCategories: MenuCategory[
         <title>k435467 Breakfast Shop: Tasty, Healthy and Speedy</title>
       </NextHead>
       <AppBar title="BREAKFAST" />
-      <Fade in={true} timeout={3000}>
-        <div style={{ paddingTop: "6px" }}>
-          <Parallax
-            // blur={{ min: -1, max: 3 }}
-            bgImage="/images/food-icons.jpg"
-            bgImageAlt="food icons"
-            strength={500}
-          >
-            <div className={classes.parallaxContentContainer}>
-              <FadeInSection>
-                <Paper elevation={24} className={classes.parallaxContent}>
-                  <Typography variant="h4" style={{ fontWeight: "bold" }}>
-                    BREAKFAST
-                  </Typography>
-                </Paper>
-              </FadeInSection>
-            </div>
-          </Parallax>
-        </div>
-      </Fade>
+      {/* <Fade in={true} timeout={3000}> */}
+      <div style={{ paddingTop: "6px" }}>
+        <Parallax
+          // blur={{ min: -1, max: 3 }}
+          bgImage="/images/food-icons.jpg"
+          bgImageAlt="food icons"
+          strength={500}
+        >
+          <div className={classes.parallaxContentContainer}>
+            <FadeInSection>
+              <Paper elevation={24} className={classes.parallaxContent}>
+                <Typography variant="h4" style={{ fontWeight: "bold" }}>
+                  BREAKFAST
+                </Typography>
+              </Paper>
+            </FadeInSection>
+          </div>
+        </Parallax>
+      </div>
+      {/* </Fade> */}
       <FadeInSection>
         <div className={classes.diagonalContainer}>
           <Container>
@@ -125,23 +125,23 @@ export default function Home({ menuCategories }: { menuCategories: MenuCategory[
         }}
       >
         <Container>
-          <FadeInSection>
-            <Box display="flex" justifyContent="center">
-              <Link href="/menu" passHref>
-                <Button
-                  color="primary"
-                  onClick={() => {
-                    setTargetCategory(0);
-                  }}
-                  style={{ fontSize: "2rem" }}
-                >
-                  <Typography variant="h4" style={{ fontWeight: "bold" }}>
-                    VIEW MENU
-                  </Typography>
-                </Button>
-              </Link>
-            </Box>
-          </FadeInSection>
+          {/* <FadeInSection> */}
+          <Box display="flex" justifyContent="center">
+            <Link href="/menu" passHref>
+              <Button
+                color="primary"
+                onClick={() => {
+                  setTargetCategory(0);
+                }}
+                style={{ fontSize: "2rem" }}
+              >
+                <Typography variant="h4" style={{ fontWeight: "bold" }}>
+                  VIEW MENU
+                </Typography>
+              </Button>
+            </Link>
+          </Box>
+          {/* </FadeInSection> */}
           <Box display="flex" justifyContent="center" flexWrap="wrap">
             {menuCategories.map((category, i) => {
               return (
@@ -185,15 +185,15 @@ export default function Home({ menuCategories }: { menuCategories: MenuCategory[
               cursus commodo interdum.
             </Typography>
           </FadeInSection>
-          <FadeInSection>
-            <Carousel />
-          </FadeInSection>
-          <FadeInSection>
-            <ImgTitleDescription direction="row-reverse" />
-          </FadeInSection>
-          <FadeInSection>
-            <ImgTitleDescription />
-          </FadeInSection>
+          {/* <FadeInSection> */}
+          <Carousel />
+          {/* </FadeInSection> */}
+          {/* <FadeInSection> */}
+          <ImgTitleDescription direction="row-reverse" />
+          {/* </FadeInSection> */}
+          {/* <FadeInSection> */}
+          <ImgTitleDescription />
+          {/* </FadeInSection> */}
           <FadeInSection>
             <Typography
               color="textSecondary"
